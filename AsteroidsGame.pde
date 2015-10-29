@@ -1,11 +1,14 @@
-//your variable declarations here
+SpaceShip b2Spirit;
 public void setup() 
 {
   size(1000,700);
+  b2Spirit = new SpaceShip(); 
 }
 public void draw() 
 {
   //your code here
+  b2Spirit.show();
+  b2Spirit.move();
 }
 class SpaceShip extends Floater  
 {  
@@ -45,11 +48,18 @@ class SpaceShip extends Floater
   myDirectionY = 0;
   myPointDirection = 0;
   }
+  public void setX(int x) {myCenterX = x;}
+  public int getX() {return (int)myCenterX;} 
+  public void setY(int y) {myCenterY = y;}  
+  public int getY() {return (int)myCenterY;}
+  public void setDirectionX(double x) {myDirectionX = x;}   
+  public double getDirectionX() {return myDirectionX;} 
+  public void setDirectionY(double y) {myDirectionY = y;}   
+  public double getDirectionY() {return myDirectionY;}  
+  public void setPointDirection(int degrees) {myPointDirection = degrees;}   
+  public double getPointDirection() {return myPointDirection;}
 
- 
-
-  
-}
+ }
 abstract class Floater //Do NOT modify the Floater class! Make changes in the SpaceShip class 
 {   
   protected int corners;  //the number of corners, a triangular floater has 3   
@@ -59,16 +69,16 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
   protected double myCenterX, myCenterY; //holds center coordinates   
   protected double myDirectionX, myDirectionY; //holds x and y coordinates of the vector for direction of travel   
   protected double myPointDirection; //holds current direction the ship is pointing in degrees    
-  abstract public void setX(int x); {myCenterX = x;}
-  abstract public int getX(); {return myCenterX;}  
-  abstract public void setY(int y); {myCenterY = y;}  
-  abstract public int getY(); {return myCenterY;}  
-  abstract public void setDirectionX(double x); {myDirectionX = x;}  
-  abstract public double getDirectionX(); {return myDirectionX;}  
-  abstract public void setDirectionY(double y); {myDirectionY = y;}  
-  abstract public double getDirectionY(); {return myDirectionY;}  
-  abstract public void setPointDirection(int degrees); {myPointDirection = degrees;}  
-  abstract public double getPointDirection(); {return myPointDirection;}
+  abstract public void setX(int x);
+  abstract public int getX();
+  abstract public void setY(int y);
+  abstract public int getY(); 
+  abstract public void setDirectionX(double x);  
+  abstract public double getDirectionX(); 
+  abstract public void setDirectionY(double y); 
+  abstract public double getDirectionY();
+  abstract public void setPointDirection(int degrees);  
+  abstract public double getPointDirection();
 
   //Accelerates the floater in the direction it is pointing (myPointDirection)   
   public void accelerate (double dAmount)   
