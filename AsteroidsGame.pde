@@ -1,14 +1,23 @@
-SpaceShip b2Spirit;
+SpaceShip b2;
 public void setup() 
 {
   size(1000,700);
-  b2Spirit = new SpaceShip(); 
+  background()
+  b2 = new SpaceShip(); 
 }
 public void draw() 
 {
   //your code here
-  b2Spirit.show();
-  b2Spirit.move();
+  b2.show();
+  b2.move();
+  
+}
+public void keyPressed()
+{
+  if(key == w){setDirectionY = -1;}
+  if(key == s){setDirectionY = 1;}
+  if(key == a){setDirectionX = -1;}
+  if(key == d){setDirectionX = 1;}
 }
 class SpaceShip extends Floater  
 {  
@@ -41,7 +50,7 @@ class SpaceShip extends Floater
   yCorners[10] = 17;
   xCorners[11] = -6;
   yCorners[11] = 20;
-  myColor = color(0, 0, 255);
+  myColor = color(0,0,0);
   myCenterX = 500;
   myCenterY = 350;
   myDirectionX = 0;
