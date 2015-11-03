@@ -2,22 +2,30 @@ SpaceShip b2;
 public void setup() 
 {
   size(1000,700);
-  background()
+  background(255);
   b2 = new SpaceShip(); 
 }
 public void draw() 
 {
   //your code here
+  fill(255);
+  rect(0,0,1000,700);
   b2.show();
   b2.move();
-  
 }
 public void keyPressed()
 {
-  if(key == w){setDirectionY = -1;}
-  if(key == s){setDirectionY = 1;}
-  if(key == a){setDirectionX = -1;}
-  if(key == d){setDirectionX = 1;}
+  if(key == 'w'){b2.setDirectionY(-1);}
+  if(key == 's'){b2.setDirectionY(1);}
+  if(key == 'a'){b2.setDirectionX(-1);}
+  if(key == 'd'){b2.setDirectionX(1);}
+  if(key == 'f')
+    {
+      b2.setX((int)(Math.random()*1000));
+      b2.setY((int)(Math.random()*700));
+      b2.setDirectionX(0);
+      b2.setDirectionY(0);
+    }
 }
 class SpaceShip extends Floater  
 {  
@@ -55,7 +63,7 @@ class SpaceShip extends Floater
   myCenterY = 350;
   myDirectionX = 0;
   myDirectionY = 0;
-  myPointDirection = 0;
+  myPointDirection = 270;
   }
   public void setX(int x) {myCenterX = x;}
   public int getX() {return (int)myCenterX;} 
