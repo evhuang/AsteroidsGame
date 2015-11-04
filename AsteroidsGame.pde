@@ -1,24 +1,34 @@
+Star [] stars;
 SpaceShip b2;
 public void setup() 
 {
+  stars = new Star[100];
+  for(int i = 0; i< stars.length; i++)
+  {
+    stars[i] = new Star();
+  }
   size(1000,700);
-  background(255);
+  background(0);
   b2 = new SpaceShip(); 
 }
 public void draw() 
 {
   //your code here
-  fill(255);
+  fill(0);
   rect(0,0,1000,700);
+  for(int i = 0; i< stars.length; i++)
+  {
+    stars[i].show();
+  }
   b2.show();
   b2.move();
 }
 public void keyPressed()
 {
-  if(key == 'w'){b2.setDirectionY(-1);}
-  if(key == 's'){b2.setDirectionY(1);}
-  if(key == 'a'){b2.setDirectionX(-1);}
-  if(key == 'd'){b2.setDirectionX(1);}
+  if(key == 'w'){b2.accelerate(0.2);}
+  if(key == 's'){b2.accelerate(-0.2);}
+  if(key == 'a'){b2.rotate(-10);}
+  if(key == 'd'){b2.rotate(10);}
   if(key == 'f')
     {
       b2.setX((int)(Math.random()*1000));
@@ -58,7 +68,7 @@ class SpaceShip extends Floater
   yCorners[10] = 17;
   xCorners[11] = -6;
   yCorners[11] = 20;
-  myColor = color(0,0,0);
+  myColor = color(255,255,255);
   myCenterX = 500;
   myCenterY = 350;
   myDirectionX = 0;
@@ -153,4 +163,28 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
     endShape(CLOSE);  
   }   
 } 
-
+class Star
+{
+  private int myX, myY, mySize, myR, myG, myB;
+  public Star()
+  {
+    myX = (int)(Math.random() * 1000) + 1;
+    myY = (int)(Math.random() * 700) + 1;
+    mySize = (int)(Math.random() * 5) + 5;
+    myR = (int)(Math.random() * 175) + 80;
+    myG = (int)(Math.random() * 175) + 80;
+    myB = (int)(Math.random() * 175) + 80;
+  }
+  public int getX() {return myX;}
+  public int getY() {return myY;}
+  public int getColor1() {return myR;}
+  public int getColor2() {return myG;}
+  public int getColor3() {return myB;}
+  public int getSize() {return mySize;}
+  public void show()
+  {
+    noStroke();
+    fill(getColor1(), getColor2(), getColor3());
+    ellipse(getX(),getY(),getSize(),getSize());
+  }
+}
