@@ -25,11 +25,11 @@ public void draw()
 }
 public void keyPressed()
 {
-  if(key == 'w'){b2.accelerate(0.2);}
-  if(key == 's'){b2.accelerate(-0.2);}
-  if(key == 'a'){b2.rotate(-10);}
-  if(key == 'd'){b2.rotate(10);}
-  if(key == 'f')
+  if(key == 'w'){b2.accelerate(0.2);} //accelerate forward
+  if(key == 's'){b2.accelerate(-0.2);} //accelerate backwards
+  if(key == 'a'){b2.rotate(-10);} //rotate counterclockwise
+  if(key == 'd'){b2.rotate(10);} //rotate clockwise
+  if(key == 'f') //hyperspace
     {
       b2.setX((int)(Math.random()*1000));
       b2.setY((int)(Math.random()*700));
@@ -171,9 +171,9 @@ class Star
     myX = (int)(Math.random() * 1000) + 1;
     myY = (int)(Math.random() * 700) + 1;
     mySize = (int)(Math.random() * 5) + 5;
-    myR = (int)(Math.random() * 175) + 80;
-    myG = (int)(Math.random() * 175) + 80;
-    myB = (int)(Math.random() * 175) + 80;
+    myR = (int)(Math.random() * 200) + 55;
+    myG = (int)(Math.random() * 200) + 55;
+    myB = (int)(Math.random() * 200) + 55;
   }
   public int getX() {return myX;}
   public int getY() {return myY;}
@@ -188,3 +188,11 @@ class Star
     ellipse(getX(),getY(),getSize(),getSize());
   }
 }
+/* ------------------------------------------------------------------------------
+-Add a strafe function (q and e)
+-Add multi firing modes (bomb, single shot, double shot)
+-Add asteroids
+-add GUI
+-make ship face towards mouse pointer
+--------------------------------------------------------------------------------*/
+    
