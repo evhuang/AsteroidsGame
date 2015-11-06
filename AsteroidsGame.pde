@@ -1,8 +1,9 @@
 Star [] stars;
 SpaceShip b2;
+boolean accel, decel, left, right;
 public void setup() 
 {
-  stars = new Star[100];
+  stars = new Star[150];
   for(int i = 0; i< stars.length; i++)
   {
     stars[i] = new Star();
@@ -20,22 +21,34 @@ public void draw()
   {
     stars[i].show();
   }
+  if(left == true){b2.rotate(-10);}
+  if(right == true){b2.rotate(10);}
+  if(accel == true){b2.accelerate(0.2);}
+  if(decel == true){b2.accelerate(-0.2);}
   b2.show();
   b2.move();
 }
 public void keyPressed()
 {
-  if(key == 'w'){b2.accelerate(0.2);} //accelerate forward
-  if(key == 's'){b2.accelerate(-0.2);} //accelerate backwards
-  if(key == 'a'){b2.rotate(-10);} //rotate counterclockwise
-  if(key == 'd'){b2.rotate(10);} //rotate clockwise
+  if(key == 'w'){accel = true;}
+  if(key == 's'){decel = true;}
+  if(key == 'a'){left = true;}
+  if(key == 'd'){right = true;}
   if(key == 'f') //hyperspace
     {
       b2.setX((int)(Math.random()*1000));
       b2.setY((int)(Math.random()*700));
       b2.setDirectionX(0);
       b2.setDirectionY(0);
+      b2.accelerate(0);
     }
+}
+public void keyReleased()
+{
+  if(key == 'w'){accel = false;}
+  if(key == 's'){decel = false;}
+  if(key == 'a'){left = false;}
+  if(key == 'd'){right = false;}
 }
 class SpaceShip extends Floater  
 {  
