@@ -201,6 +201,18 @@ class Star
     ellipse(getX(),getY(),getSize(),getSize());
   }
 }
+class Asteroid extends Floater
+{
+  int rotSpeed;
+  Asteroid
+  {
+    
+  }
+  public void move()
+  {
+    
+  }
+}
 /* ------------------------------------------------------------------------------
 -Add a strafe function (q and e)
 -Add multi firing modes (bomb, single shot, double shot)
