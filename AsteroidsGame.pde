@@ -210,7 +210,8 @@ class Asteroid extends Floater
   }
   public void move()
   {
-    
+    rotate(rotspeed);
+    super.move();
   }
 }
 /* ------------------------------------------------------------------------------
