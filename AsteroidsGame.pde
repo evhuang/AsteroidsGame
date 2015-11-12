@@ -1,4 +1,5 @@
 Star [] stars;
+Asteroid asts;
 SpaceShip b2;
 boolean accel, decel, left, right;
 public void setup() 
@@ -10,6 +11,7 @@ public void setup()
   }
   size(1000,700);
   background(0);
+  asts = new Asteroid();
   b2 = new SpaceShip(); 
 }
 public void draw() 
@@ -21,6 +23,8 @@ public void draw()
   {
     stars[i].show();
   }
+  asts.show();
+  asts.move();
   if(left == true){b2.rotate(-10);}
   if(right == true){b2.rotate(10);}
   if(accel == true){b2.accelerate(0.2);}
@@ -203,21 +207,51 @@ class Star
 }
 class Asteroid extends Floater
 {
-  int rotSpeed;
-  Asteroid
+  private int rotSpeed;
+  public Asteroid()
   {
-    
+    corners = 6;
+    xCorners = new int[corners];
+    yCorners = new int[corners];
+    xCorners[0] = -11;
+    yCorners[0] = -8;
+    xCorners[1] = 7;
+    yCorners[1] = -8;
+    xCorners[2] = 13;
+    yCorners[2] = 0;
+    xCorners[3] = 6;
+    yCorners[3] = 10;
+    xCorners[4] = -11;
+    yCorners[4] = 8;
+    xCorners[5] = -5;
+    yCorners[5] = 0;
+    myCenterX = 500;
+    myCenterY = 250;
+    myColor = color(255,255,255);
+    myDirectionX = 1;
+    myDirectionY = 1;
+    myPointDirection = 90;
+    rotSpeed = (int)(Math.random() * 3) + 3;
   }
+  public void setX(int x) {myCenterX = x;}
+  public int getX() {return (int)myCenterX;} 
+  public void setY(int y) {myCenterY = y;}  
+  public int getY() {return (int)myCenterY;}
+  public void setDirectionX(double x) {myDirectionX = x;}   
+  public double getDirectionX() {return myDirectionX;} 
+  public void setDirectionY(double y) {myDirectionY = y;}   
+  public double getDirectionY() {return myDirectionY;}  
+  public void setPointDirection(int degrees) {myPointDirection = degrees;}   
+  public double getPointDirection() {return myPointDirection;}
   public void move()
   {
-    rotate(rotspeed);
+    rotate(rotSpeed);
     super.move();
   }
 }
 /* ------------------------------------------------------------------------------
 -Add a strafe function (q and e)
 -Add multi firing modes (bomb, single shot, double shot)
--Add asteroids
 -add GUI
 -make ship face towards mouse pointer
 --------------------------------------------------------------------------------*/
