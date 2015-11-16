@@ -54,6 +54,12 @@ public void keyPressed()
       b2.setDirectionY(0);
       b2.accelerate(0);
     }
+  if(key == 'v') //quickbrake
+    {
+      b2.setDirectionX(0);
+      b2.setDirectionY(0);
+      b2.accelerate(0);
+    }
 }
 public void keyReleased()
 {
@@ -232,8 +238,8 @@ class Asteroid extends Floater
     myCenterX = (int)(Math.random() * 1000);
     myCenterY = (int)(Math.random() * 700);
     myColor = color(255,255,255);
-    myDirectionX = (int)(Math.random() * 4) - 1;
-    myDirectionY = (int)(Math.random() * 4) - 1;
+    myDirectionX = (int)(Math.random() * 4) - 2;
+    myDirectionY = (int)(Math.random() * 4) - 2;
     myPointDirection = 90;
     rotSpeed = (int)(Math.random() * 3) + 3;
   }
