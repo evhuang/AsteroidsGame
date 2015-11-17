@@ -46,7 +46,7 @@ public void keyPressed()
   if(key == 's'){decel = true;}
   if(key == 'a'){left = true;}
   if(key == 'd'){right = true;}
-  if(key == 'f') //hyperspace
+  if(key == 'v') //hyperspace
     {
       b2.setX((int)(Math.random()*1000));
       b2.setY((int)(Math.random()*700));
@@ -54,7 +54,7 @@ public void keyPressed()
       b2.setDirectionY(0);
       b2.accelerate(0);
     }
-  if(key == 'v') //quickbrake
+  if(key == 'f') //quickbrake
     {
       b2.setDirectionX(0);
       b2.setDirectionY(0);
