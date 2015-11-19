@@ -1,5 +1,6 @@
 Star [] stars;
-Asteroid [] asts;
+//Asteroid [] asts;
+ArrayList <Asteroid> asts = new ArrayList <Asteroid>();
 SpaceShip b2;
 boolean accel, decel, left, right;
 public void setup() 
@@ -9,11 +10,27 @@ public void setup()
   {
     stars[i] = new Star();
   }
-  asts = new Asteroid[15];
+  /*asts = new Asteroid[15];
   for(int i = 0; i< asts.length; i++)
   {
     asts[i] = new Asteroid();
   }
+  */
+  asts.add(new Asteroid());
+  asts.add(new Asteroid());
+  asts.add(new Asteroid());
+  asts.add(new Asteroid());
+  asts.add(new Asteroid());
+  asts.add(new Asteroid());
+  asts.add(new Asteroid());
+  asts.add(new Asteroid());
+  asts.add(new Asteroid());
+  asts.add(new Asteroid());
+  asts.add(new Asteroid());
+  asts.add(new Asteroid());
+  asts.add(new Asteroid());
+  asts.add(new Asteroid());
+  asts.add(new Asteroid());
   size(1000,700);
   background(0);
   
@@ -28,11 +45,16 @@ public void draw()
   {
     stars[i].show();
   }
-  for(int i = 0; i< asts.length; i++)
+  /*for(int i = 0; i< asts.length; i++)
   {
     asts[i].show();
     asts[i].move();
-  }
+  }*/
+  for(int nI = 0; nI < asts.size(); nI++)
+    {
+      asts.get(nI).move();
+      asts.get(nI).show();
+    }
   if(left == true){b2.rotate(-10);}
   if(right == true){b2.rotate(10);}
   if(accel == true){b2.accelerate(0.2);}
@@ -227,14 +249,14 @@ class Asteroid extends Floater
     corners = 4;
     xCorners = new int[corners];
     yCorners = new int[corners];
-    xCorners[0] = 10;
+    xCorners[0] = 15;
     yCorners[0] = 0;
     xCorners[1] = 0;
-    yCorners[1] = 10;
-    xCorners[2] = -10;
+    yCorners[1] = 15;
+    xCorners[2] = -15;
     yCorners[2] = 0;
     xCorners[3] = 0;
-    yCorners[3] = -10;
+    yCorners[3] = -15;
     myCenterX = (int)(Math.random() * 1000);
     myCenterY = (int)(Math.random() * 700);
     myColor = color(255,255,255);
