@@ -1,8 +1,11 @@
 Star [] stars;
-//Asteroid [] asts;
-ArrayList <Asteroid> asts = new ArrayList <Asteroid>();
+
+ArrayList <Asteroid> asts;
 SpaceShip b2;
+
 boolean accel, decel, left, right;
+
+double distance;
 public void setup() 
 {
   stars = new Star[150];
@@ -10,27 +13,11 @@ public void setup()
   {
     stars[i] = new Star();
   }
-  /*asts = new Asteroid[15];
-  for(int i = 0; i< asts.length; i++)
+  asts = new ArrayList <Asteroid>();
+  for(int a = 0; a < 10; a++)
   {
-    asts[i] = new Asteroid();
+    asts.add(new Asteroid());
   }
-  */
-  asts.add(new Asteroid());
-  asts.add(new Asteroid());
-  asts.add(new Asteroid());
-  asts.add(new Asteroid());
-  asts.add(new Asteroid());
-  asts.add(new Asteroid());
-  asts.add(new Asteroid());
-  asts.add(new Asteroid());
-  asts.add(new Asteroid());
-  asts.add(new Asteroid());
-  asts.add(new Asteroid());
-  asts.add(new Asteroid());
-  asts.add(new Asteroid());
-  asts.add(new Asteroid());
-  asts.add(new Asteroid());
   size(1000,700);
   background(0);
   
@@ -45,16 +32,17 @@ public void draw()
   {
     stars[i].show();
   }
-  /*for(int i = 0; i< asts.length; i++)
+for(int a = 0; a < asts.size(); a++)
   {
-    asts[i].show();
-    asts[i].move();
-  }*/
-  for(int nI = 0; nI < asts.size(); nI++)
+    asts.get(a).move();
+    asts.get(a).show();
+    distance = dist(asts.get(a).getX(), asts.get(a).getY(), b2.getX(), b2.getY());
+    if(distance < 20)
     {
-      asts.get(nI).move();
-      asts.get(nI).show();
+      asts.remove(a);
+      asts.add(new Asteroid());
     }
+  }
   if(left == true){b2.rotate(-10);}
   if(right == true){b2.rotate(10);}
   if(accel == true){b2.accelerate(0.2);}
@@ -91,7 +79,7 @@ public void keyReleased()
   if(key == 'd'){right = false;}
 }
 class SpaceShip extends Floater  
-{  
+{
   public SpaceShip()
   {
   corners = 12;
@@ -141,7 +129,7 @@ class SpaceShip extends Floater
 
  }
 abstract class Floater //Do NOT modify the Floater class! Make changes in the SpaceShip class 
-{   
+{
   protected int corners;  //the number of corners, a triangular floater has 3   
   protected int[] xCorners;   
   protected int[] yCorners;   
