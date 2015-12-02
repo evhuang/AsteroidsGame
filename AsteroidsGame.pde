@@ -1,5 +1,5 @@
 Star[] stars;
-
+ArrayList < Bullet > slug
 ArrayList < Asteroid > asts;
 SpaceShip b2;
 
@@ -15,10 +15,15 @@ public void setup() {
     for (int a = 0; a < 15; a++) {
         asts.add(new Asteroid());
     }
+    slug = new ArrayList < Bullet > ();
+    for (int k = 0, k < 100; k++) {
+        slug.add(new Bullet());
+    }
     size(1000, 700);
     background(0);
 
     b2 = new SpaceShip();
+    
 }
 public void draw() {
     //your code here
@@ -36,6 +41,10 @@ public void draw() {
             asts.add(new Asteroid());
         }
     }
+    for (int k = 0; k < slug.size(); k++) {
+        slug.get(k).move();
+        slug.get(k).show();
+      }
     if (left == true) {
         b2.rotate(-10);
     }
@@ -321,14 +330,17 @@ class Asteroid extends Floater {
 }
 class Bullet extends Floater
 {
-  public Bullet(SpaceShip b2)
+  private int myColor;
+  private double dRadians;
+  public Bullet(SpaceShip theShip)
   {
-    myCenterX = b2.getX();
-    myCenterY = b2.getY();
-    myPointDirection = b2.getPointDirection();
-    double dRadians =myPointDirection*(Math.PI/180);
-    myDirectionX = 5 * Math.cos(dRadians) + b2.getDirectionX();
-    myDirectionY = 5 * Math.sin(dRadians) + b2.getDirectionY();
+    myCenterX = theShip.getX();
+    myCenterY = theShip.getY();
+    myPointDirection = theShip.getPointDirection();
+    dRadians = myPointDirection*(Math.PI/180);
+    myDirectionX = 5 * Math.cos(dRadians) + theShip.getDirectionX();
+    myDirectionY = 5 * Math.sin(dRadians) + theShip.getDirectionY();
+    myColor = color(200, 200, 200);
   }
     public void setX(int x) {
         myCenterX = x;
@@ -363,9 +375,11 @@ class Bullet extends Floater
     public void show() {
         fill(myColor);
         stroke(myColor);         
-        double dRadians = myPointDirection * (Math.PI / 180);
-        int xRotatedTranslated, yRotatedTranslated;
-
+        ellipse((float)myCenterX, (float)myCenterY, 3,3);
+    }
+    public void move() {
+      myCenterX += myDirectionX;
+      myCenterY += myDirectionY;
     }
 }
 /* ------------------------------------------------------------------------------
