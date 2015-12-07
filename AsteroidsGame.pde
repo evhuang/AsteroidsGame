@@ -1,5 +1,5 @@
 Star[] stars;
-ArrayList < Bullet > slug
+ArrayList < Bullet > slug;
 ArrayList < Asteroid > asts;
 SpaceShip b2;
 
@@ -15,14 +15,15 @@ public void setup() {
     for (int a = 0; a < 15; a++) {
         asts.add(new Asteroid());
     }
-    slug = new ArrayList < Bullet > ();
-    for (int k = 0, k < 100; k++) {
-        slug.add(new Bullet());
-    }
+    
     size(1000, 700);
     background(0);
 
     b2 = new SpaceShip();
+    slug = new ArrayList < Bullet > ();
+    for (int k = 0; k < 100; k++) {
+        slug.add(new Bullet(b2));
+    }
     
 }
 public void draw() {
@@ -87,6 +88,8 @@ public void keyPressed() {
         b2.setDirectionY(0);
         b2.accelerate(0);
     }
+    if(key == 'j') 
+      {slug.add(new Bullet(b2));}
 }
 public void keyReleased() {
     if (key == 'w') {
@@ -338,49 +341,27 @@ class Bullet extends Floater
     myCenterY = theShip.getY();
     myPointDirection = theShip.getPointDirection();
     dRadians = myPointDirection*(Math.PI/180);
-    myDirectionX = 5 * Math.cos(dRadians) + theShip.getDirectionX();
-    myDirectionY = 5 * Math.sin(dRadians) + theShip.getDirectionY();
-    myColor = color(200, 200, 200);
+    myDirectionX = 5*Math.cos(dRadians) + theShip.getDirectionX();
+    myDirectionY = 5*Math.sin(dRadians) + theShip.getDirectionY();
+    myColor = color(200,200,200);
   }
-    public void setX(int x) {
-        myCenterX = x;
-    }
-    public int getX() {
-        return (int) myCenterX;
-    }
-    public void setY(int y) {
-        myCenterY = y;
-    }
-    public int getY() {
-        return (int) myCenterY;
-    }
-    public void setDirectionX(double x) {
-        myDirectionX = x;
-    }
-    public double getDirectionX() {
-        return myDirectionX;
-    }
-    public void setDirectionY(double y) {
-        myDirectionY = y;
-    }
-    public double getDirectionY() {
-        return myDirectionY;
-    }
-    public void setPointDirection(int degrees) {
-        myPointDirection = degrees;
-    }
-    public double getPointDirection() {
-        return myPointDirection;
-    }
-    public void show() {
-        fill(myColor);
-        stroke(myColor);         
-        ellipse((float)myCenterX, (float)myCenterY, 3,3);
-    }
-    public void move() {
-      myCenterX += myDirectionX;
-      myCenterY += myDirectionY;
-    }
+
+  public void setX(int x) {myCenterX = x;}
+  public int getX() {return (int)myCenterX;}
+  public void setY(int y) {myCenterY = y;}
+  public int getY() {return (int)myCenterY;}
+  public void setDirectionX(double x) {myDirectionX = x;}
+  public double getDirectionX() {return myDirectionX;}
+  public void setDirectionY(double y) {myDirectionY = y;}
+  public double getDirectionY() {return myDirectionY;}
+  public void setPointDirection(int degrees) {myPointDirection = degrees;}
+  public double getPointDirection() {return myPointDirection;}
+  public void show()
+  {
+    noStroke();
+    fill(myColor);
+    ellipse((int)myCenterX, (int)myCenterY, 5, 5);
+  }
 }
 /* ------------------------------------------------------------------------------
 -Add a strafe function (q and e)
