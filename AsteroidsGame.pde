@@ -3,7 +3,7 @@ ArrayList < Bullet > slug;
 ArrayList < Asteroid > asts;
 SpaceShip b2;
 
-boolean accel, decel, left, right;
+boolean accel, decel, left, right; //,shoot;
 
 double distance;
 public void setup() {
@@ -21,8 +21,9 @@ public void setup() {
 
     b2 = new SpaceShip();
     slug = new ArrayList < Bullet > ();
-    for (int k = 0; k < 100; k++) {
+    for (int k = 0; k < 5; k++) {
         slug.add(new Bullet(b2));
+        
     }
     
 }
@@ -42,10 +43,10 @@ public void draw() {
             asts.add(new Asteroid());
         }
     }
-    for (int k = 0; k < slug.size(); k++) {
+    for (int k = 1; k < slug.size(); k++) {
         slug.get(k).move();
         slug.get(k).show();
-      }
+        }
     if (left == true) {
         b2.rotate(-10);
     }
@@ -60,6 +61,9 @@ public void draw() {
     }
     b2.show();
     b2.move();
+    /*if (shoot == true) {
+        slug.add(new Bullet(b2));
+    }*/
 }
 public void keyPressed() {
     if (key == 'w') {
@@ -88,8 +92,10 @@ public void keyPressed() {
         b2.setDirectionY(0);
         b2.accelerate(0);
     }
-    if(key == 'j') 
-      {slug.add(new Bullet(b2));}
+    if(key == 'j') {
+        //shoot = true;
+        slug.add(new Bullet(b2));
+    }
 }
 public void keyReleased() {
     if (key == 'w') {
@@ -104,6 +110,9 @@ public void keyReleased() {
     if (key == 'd') {
         right = false;
     }
+    /*if (key == 'j') {
+        shoot = false;
+    }*/
 }
 class SpaceShip extends Floater {
     public SpaceShip() {
@@ -356,12 +365,19 @@ class Bullet extends Floater
   public double getDirectionY() {return myDirectionY;}
   public void setPointDirection(int degrees) {myPointDirection = degrees;}
   public double getPointDirection() {return myPointDirection;}
+  public void move() //move the floater in the current direction of travel
+  {
+   //change the x and y coordinates by myDirectionX and myDirectionY       
+    myCenterX += myDirectionX;
+    myCenterY += myDirectionY;
+  }
   public void show()
   {
     noStroke();
     fill(myColor);
     ellipse((int)myCenterX, (int)myCenterY, 5, 5);
   }
+
 }
 /* ------------------------------------------------------------------------------
 -Add a strafe function (q and e)
