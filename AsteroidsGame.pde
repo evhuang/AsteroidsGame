@@ -15,7 +15,7 @@ public void setup() {
     for (int a = 0; a < 15; a++) {
         asts.add(new Asteroid());
     }
-    
+
     size(1000, 700);
     background(0);
 
@@ -23,9 +23,9 @@ public void setup() {
     slug = new ArrayList < Bullet > ();
     for (int k = 0; k < 5; k++) {
         slug.add(new Bullet(b2));
-        
+
     }
-    
+
 }
 public void draw() {
     //your code here
@@ -45,14 +45,14 @@ public void draw() {
     }
     for (int a = 0; a < asts.size(); a++) {
         for (int k = 1; k < slug.size(); k++) {
-        slug.get(k).move();
-        slug.get(k).show();
-        collision = dist(asts.get(a).getX(), asts.get(a).getY(), slug.get(k).getX(), slug.get(k).getY());
-        if (collision < 30) {
-          asts.remove(a);
-          slug.remove(k);
-          asts.add(new Asteroid());
-        }
+            slug.get(k).move();
+            slug.get(k).show();
+            collision = dist(asts.get(a).getX(), asts.get(a).getY(), slug.get(k).getX(), slug.get(k).getY());
+            if (collision < 30) {
+                asts.remove(a);
+                slug.remove(k);
+                asts.add(new Asteroid());
+            }
         }
     }
     if (left == true) {
@@ -100,7 +100,7 @@ public void keyPressed() {
         b2.setDirectionY(0);
         b2.accelerate(0);
     }
-    if(key == 'j') {
+    if (key == 'j') {
         //shoot = true;
         slug.add(new Bullet(b2));
     }
@@ -348,43 +348,60 @@ class Asteroid extends Floater {
         super.move();
     }
 }
-class Bullet extends Floater
-{
-  private int myColor;
-  private double dRadians;
-  public Bullet(SpaceShip theShip)
-  {
-    myCenterX = theShip.getX();
-    myCenterY = theShip.getY();
-    myPointDirection = theShip.getPointDirection();
-    dRadians = myPointDirection*(Math.PI/180);
-    myDirectionX = 5*Math.cos(dRadians) + theShip.getDirectionX();
-    myDirectionY = 5*Math.sin(dRadians) + theShip.getDirectionY();
-    myColor = color(200,200,200);
-  }
+class Bullet extends Floater {
+    private int myColor;
+    private double dRadians;
+    public Bullet(SpaceShip theShip) {
+        myCenterX = theShip.getX();
+        myCenterY = theShip.getY();
+        myPointDirection = theShip.getPointDirection();
+        dRadians = myPointDirection * (Math.PI / 180);
+        myDirectionX = 5 * Math.cos(dRadians) + theShip.getDirectionX();
+        myDirectionY = 5 * Math.sin(dRadians) + theShip.getDirectionY();
+        myColor = color(200, 200, 200);
+    }
 
-  public void setX(int x) {myCenterX = x;}
-  public int getX() {return (int)myCenterX;}
-  public void setY(int y) {myCenterY = y;}
-  public int getY() {return (int)myCenterY;}
-  public void setDirectionX(double x) {myDirectionX = x;}
-  public double getDirectionX() {return myDirectionX;}
-  public void setDirectionY(double y) {myDirectionY = y;}
-  public double getDirectionY() {return myDirectionY;}
-  public void setPointDirection(int degrees) {myPointDirection = degrees;}
-  public double getPointDirection() {return myPointDirection;}
-  public void move() //move the floater in the current direction of travel
-  {
-   //change the x and y coordinates by myDirectionX and myDirectionY       
-    myCenterX += myDirectionX;
-    myCenterY += myDirectionY;
-  }
-  public void show()
-  {
-    noStroke();
-    fill(myColor);
-    ellipse((int)myCenterX, (int)myCenterY, 5, 5);
-  }
+    public void setX(int x) {
+        myCenterX = x;
+    }
+    public int getX() {
+        return (int) myCenterX;
+    }
+    public void setY(int y) {
+        myCenterY = y;
+    }
+    public int getY() {
+        return (int) myCenterY;
+    }
+    public void setDirectionX(double x) {
+        myDirectionX = x;
+    }
+    public double getDirectionX() {
+        return myDirectionX;
+    }
+    public void setDirectionY(double y) {
+        myDirectionY = y;
+    }
+    public double getDirectionY() {
+        return myDirectionY;
+    }
+    public void setPointDirection(int degrees) {
+        myPointDirection = degrees;
+    }
+    public double getPointDirection() {
+        return myPointDirection;
+    }
+    public void move() //move the floater in the current direction of travel
+        {
+            //change the x and y coordinates by myDirectionX and myDirectionY       
+            myCenterX += myDirectionX;
+            myCenterY += myDirectionY;
+        }
+    public void show() {
+        noStroke();
+        fill(myColor);
+        ellipse((int) myCenterX, (int) myCenterY, 5, 5);
+    }
 
 }
 /* ------------------------------------------------------------------------------
