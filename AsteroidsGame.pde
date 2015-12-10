@@ -5,7 +5,7 @@ SpaceShip b2;
 
 boolean accel, decel, left, right; //,shoot;
 
-double distance;
+double distance, collision;
 public void setup() {
     stars = new Star[150];
     for (int i = 0; i < stars.length; i++) {
@@ -43,10 +43,18 @@ public void draw() {
             asts.add(new Asteroid());
         }
     }
-    for (int k = 1; k < slug.size(); k++) {
+    for (int a = 0; a < asts.size(); a++) {
+        for (int k = 1; k < slug.size(); k++) {
         slug.get(k).move();
         slug.get(k).show();
+        collision = dist(asts.get(a).getX(), asts.get(a).getY(), slug.get(k).getX(), slug.get(k).getY());
+        if (collision < 30) {
+          asts.remove(a);
+          slug.remove(k);
+          asts.add(new Asteroid());
         }
+        }
+    }
     if (left == true) {
         b2.rotate(-10);
     }
